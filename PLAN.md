@@ -53,7 +53,7 @@ hardware adapters (which cannot be tested without a camera) are wired in.
 
 ## Milestone 8 — Phase 2 data & features (pure numpy, testable now)
 Spec: `docs/superpowers/specs/2026-07-05-lip-reading-phase2-design.md`
-- [ ] `lips/normalize.py` — normalize lip landmarks from the full mesh (inter-ocular
+- [x] `lips/normalize.py` — normalize lip landmarks from the full mesh (inter-ocular
       scale, nose-tip translation); return normalized lip subset. + tests.
 - [ ] `lips/sequence.py` — velocity-based silence trim, fixed-length resample,
       flatten to a feature vector. + tests.
