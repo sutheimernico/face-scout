@@ -44,3 +44,8 @@ extend-immutable-calls = ["typer.Option", "typer.Argument"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
+filterwarnings = [
+    # joblib sets ndarray.shape while unpickling, which NumPy 2.5 deprecated. Upstream
+    # joblib x numpy issue, not our code; scoped to this exact message only.
+    "ignore:Setting the shape on a NumPy array has been deprecated:DeprecationWarning",
+]

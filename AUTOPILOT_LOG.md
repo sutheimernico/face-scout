@@ -17,3 +17,4 @@ One line per iteration: date · task · result.
 - 2026-07-05 · lips/record.py (finite-source utterance capture) + `lips record --video` + tests; lips_data/ gitignored · done (70 tests green)
 - 2026-07-05 · lips/live.py (predict_meshes core + push-to-talk run_live) + `lips run` + tests · done (74 tests green) — Milestone 10 code done; live verify Needs Nico
 - 2026-07-05 · docs sweep: README Phase 2 usage/roadmap + architecture.md Phase 2 section · done
+- 2026-07-05 · scoped-filter the joblib×numpy-2.5 shape DeprecationWarning; clean test run · done (74 passed, 0 warnings) — non-blocked backlog exhausted; remaining tasks are Needs Nico
