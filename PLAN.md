@@ -46,7 +46,7 @@ hardware adapters (which cannot be tested without a camera) are wired in.
 - [x] Smoke tests for `types` and `config` defaults.
 
 ## Milestone 7 — Phase 2 kickoff: lip reading (DESIGN)
-- [ ] Phase-boundary self-challenge: SOTA scan of lip-reading approaches; write
+- [x] Phase-boundary self-challenge: SOTA scan of lip-reading approaches; write
       `docs/adr/0001-lip-reading-approach.md`.
 - [ ] Phase 2 design spec in `docs/superpowers/specs/`.
 - [ ] Expand this plan with Phase 2 build tasks (data → features → model → eval).
