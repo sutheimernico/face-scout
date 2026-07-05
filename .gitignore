@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Models (downloaded at first run, not vendored)
+models/
+*.task
+*.onnx
+
+# Biometric data — NEVER commit face embeddings or captured frames
+gallery/
+*.npz
+assets/captures/
+
+# OS
+.DS_Store
