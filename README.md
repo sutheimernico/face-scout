@@ -75,6 +75,37 @@ uv run face-scout run --camera 1        # pick a different device
 With an empty gallery it still tracks and draws the mesh — it just labels every
 face `Unknown` until you enroll someone.
 
+Read live from a recorded clip instead of the webcam:
+
+```bash
+uv run face-scout run --video clip.mp4
+```
+
+## Lip reading (Phase 2, v1)
+
+Closed-vocabulary, single-speaker lip reading built on the Phase 1 lip landmarks
+(approach: [ADR 0001](docs/adr/0001-lip-reading-approach.md); design:
+[spec](docs/superpowers/specs/2026-07-05-lip-reading-phase2-design.md)). Record a
+few clips per word, train a classifier, and predict live:
+
+```bash
+# 1. Record labeled utterances (one short clip per utterance). Use a fresh
+#    --session per recording day so evaluation can hold whole sessions out.
+uv run face-scout lips record --label yes --session day1 --video yes_01.mp4
+
+# 2. Train, and evaluate honestly on a held-out session.
+uv run face-scout lips train --data lips_data --out models/lips.joblib
+uv run face-scout lips eval  --data lips_data --val-session day2
+
+# 3. Live push-to-talk: hold SPACE while speaking, release to predict.
+uv run face-scout lips run --model models/lips.joblib
+```
+
+Realistic accuracy for a 10-30 word single-user vocabulary is ~80-95% (ADR 0001);
+the error floor is visually confusable visemes (p/b/m), and the head must stay
+roughly frontal. The v1 classifier is a landmark-feature RandomForest; a PyTorch
+temporal model is the deferred upgrade once more data is recorded.
+
 ## Architecture
 
 Modules under `src/face_scout/`, each with one purpose and a narrow interface, so
@@ -90,29 +121,32 @@ See [docs/architecture.md](docs/architecture.md) and the design spec in
 | `gallery` | enrollment store + cosine matching |
 | `recognizer` | associate embeddings to tracks; sticky identity |
 | `capture` · `landmarker` · `embedder` · `renderer` | hardware/library adapters |
+| `pipeline` | headless per-frame wiring (landmarks → track → throttled identity) |
 | `app` · `enroll` · `cli` | live loop, enrollment, Typer CLI |
+| `lips/` | Phase 2 — normalize · sequence · dataset · model · record · live |
 
 ## Tests
 
 ```bash
-uv run pytest        # pure-logic core: tracker, gallery, geometry, recognizer
+uv run pytest        # pure-logic core + Phase 2 (normalize, sequence, dataset, model)
 uv run ruff check .
 ```
 
-The live loop (`app`, `capture`, `landmarker`, `renderer`) is thin and verified
-by hand on a machine with a webcam.
+The camera/display paths (`app`, `capture`, `landmarker`, `renderer`, `lips run`)
+are thin and verified by hand on a machine with a webcam.
 
 ## Privacy
 
-Face embeddings are biometric data. The gallery stays local under `gallery/`,
-which is git-ignored — **no embeddings or captured frames are ever committed.**
+Face embeddings and recorded lip data are biometric. The gallery (`gallery/`) and
+lip dataset (`lips_data/`) stay local and git-ignored — **no embeddings, lip
+recordings, or captured frames are ever committed.**
 
 ## Roadmap
 
 - **Phase 1 (this repo)** — tracking + mesh + identity. ✅
-- **Phase 2 — lip reading** — sequence model over the lip-landmark / mouth-ROI
-  streams this repo already produces.
-- **Phase 3 — song/audio recognition** — separate audio subsystem.
+- **Phase 2 — lip reading** — closed-vocabulary landmark classifier
+  (record → train → eval → run). ✅ *code complete; pending live webcam verification.*
+- **Phase 3 — song/audio recognition** — separate audio subsystem. *(future)*
 
 ## License
 

@@ -83,3 +83,33 @@ overlaps.
 - **Manual only:** the live loop (`app`), `capture`, and `renderer`, plus real CV
   inference, need a camera and a display/GPU with OpenGL — verified by hand on the
   target machine and captured as the demo clip.
+
+## Phase 2 — lip reading (`lips/`)
+
+Closed-vocabulary, single-speaker lip reading that reuses the Phase 1 lip
+landmarks. Approach: `docs/adr/0001-lip-reading-approach.md`; design:
+`docs/superpowers/specs/2026-07-05-lip-reading-phase2-design.md`. Same
+pure-logic-first split — everything except the camera loops is unit-tested.
+
+```
+record:  clip ─▶ landmarker ─▶ normalize ─▶ (T,P,2) sequence ─▶ dataset (.npz, label+session)
+train:   dataset ─▶ per sample: trim+resample+flatten ─▶ session split ─▶ model.fit ─▶ .joblib
+predict: mesh buffer ─▶ normalize ─▶ resample+flatten ─▶ model.predict_proba ─▶ label + confidence
+```
+
+| Module | Responsibility | Tested here |
+|---|---|---|
+| `lips/normalize` | lip subset from full mesh, nose-tip translation + inter-ocular scale | yes |
+| `lips/sequence` | velocity silence-trim, linear resample, flatten to a feature vector | yes |
+| `lips/dataset` | labelled `.npz` sample store + session-aware split | yes |
+| `lips/model` | RandomForest wrapper (fit/predict/proba/save/load) | yes (synthetic) |
+| `lips/record` | `meshes_to_sequence` + `record_utterance` over a finite source | yes (fakes) |
+| `lips/live` | `predict_meshes` core; `run_live` push-to-talk webcam loop | core yes; loop Needs Nico |
+
+Key decision (see ADR/spec): **scale is normalized by inter-ocular distance, not by
+the mouth** — mouth motion is the signal, so it cannot be the reference. That is
+why `normalize` needs the full mesh, not just the lip landmarks.
+
+The deferred upgrade path is a small PyTorch temporal model (GRU / 1D-CNN) over
+variable-length padded sequences, once enough data is recorded; the pixel
+mouth-ROI CNN stays out of scope until the landmark approach plateaus.
