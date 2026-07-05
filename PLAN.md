@@ -37,9 +37,9 @@ hardware adapters (which cannot be tested without a camera) are wired in.
       into `assets/` and embed in README. **(Nico — needs a camera + display.)**
 
 ## Milestone 6 — Testability & camera-free verification (Phase 1 hardening)
-- [ ] Extract a headless `Pipeline` (inject `Landmarker`/`Embedder`) that owns the
+- [x] Extract a headless `Pipeline` (inject `Landmarker`/`Embedder`) that owns the
       per-frame wiring; make `app.run` thin I/O around it.
-- [ ] End-to-end pipeline test with fake landmarker + embedder: identity flows to
+- [x] End-to-end pipeline test with fake landmarker + embedder: identity flows to
       the correct track across frames, throttle + stickiness honored.
 - [ ] `VideoFileSource` (`FrameSource` over a video file) + `run --video PATH` for
       camera-free runs; unit test on a generated clip.
