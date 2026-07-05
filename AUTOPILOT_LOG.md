@@ -12,3 +12,4 @@ One line per iteration: date · task · result.
 - 2026-07-05 · lips/normalize.py (nose-tip translation + inter-ocular scale) + invariance tests · done (41 tests green)
 - 2026-07-05 · lips/sequence.py (velocity trim, linear resample, feature vector) + tests · done (51 tests green)
 - 2026-07-05 · lips/dataset.py (labeled .npz store + session-aware split) + tests · done (55 tests green) — Milestone 8 complete
+- 2026-07-05 · lips/model.py (RandomForest wrapper: fit/predict/proba/save/load) + synthetic tests, pin scikit-learn · done (60 tests green)

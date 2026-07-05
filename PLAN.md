@@ -61,7 +61,7 @@ Spec: `docs/superpowers/specs/2026-07-05-lip-reading-phase2-design.md`
       and session-aware train/val split (no frame leakage). + tests.
 
 ## Milestone 9 — Phase 2 model (adds scikit-learn)
-- [ ] `lips/model.py` — sklearn classifier wrapper (fit/predict/predict_proba,
+- [x] `lips/model.py` — sklearn classifier wrapper (fit/predict/predict_proba,
       save/load); pin scikit-learn with justification. + tests on synthetic data.
 - [ ] `lips train` / `lips eval` CLI — train from a dataset dir, report accuracy +
       confusion matrix. + test on a synthetic dataset.
