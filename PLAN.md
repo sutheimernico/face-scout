@@ -43,7 +43,7 @@ hardware adapters (which cannot be tested without a camera) are wired in.
       the correct track across frames, throttle + stickiness honored.
 - [x] `VideoFileSource` (`FrameSource` over a video file) + `run --video PATH` for
       camera-free runs; unit test on a generated clip.
-- [ ] Smoke tests for `types` and `config` defaults.
+- [x] Smoke tests for `types` and `config` defaults.
 
 ## Milestone 7 — Phase 2 kickoff: lip reading (DESIGN)
 - [ ] Phase-boundary self-challenge: SOTA scan of lip-reading approaches; write
