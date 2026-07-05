@@ -48,8 +48,29 @@ hardware adapters (which cannot be tested without a camera) are wired in.
 ## Milestone 7 — Phase 2 kickoff: lip reading (DESIGN)
 - [x] Phase-boundary self-challenge: SOTA scan of lip-reading approaches; write
       `docs/adr/0001-lip-reading-approach.md`.
-- [ ] Phase 2 design spec in `docs/superpowers/specs/`.
-- [ ] Expand this plan with Phase 2 build tasks (data → features → model → eval).
+- [x] Phase 2 design spec in `docs/superpowers/specs/`.
+- [x] Expand this plan with Phase 2 build tasks (data → features → model → eval).
+
+## Milestone 8 — Phase 2 data & features (pure numpy, testable now)
+Spec: `docs/superpowers/specs/2026-07-05-lip-reading-phase2-design.md`
+- [ ] `lips/normalize.py` — normalize lip landmarks from the full mesh (inter-ocular
+      scale, nose-tip translation); return normalized lip subset. + tests.
+- [ ] `lips/sequence.py` — velocity-based silence trim, fixed-length resample,
+      flatten to a feature vector. + tests.
+- [ ] `lips/dataset.py` — labeled sample store (save/load `.npz`, label + session_id)
+      and session-aware train/val split (no frame leakage). + tests.
+
+## Milestone 9 — Phase 2 model (adds scikit-learn)
+- [ ] `lips/model.py` — sklearn classifier wrapper (fit/predict/predict_proba,
+      save/load); pin scikit-learn with justification. + tests on synthetic data.
+- [ ] `lips train` / `lips eval` CLI — train from a dataset dir, report accuracy +
+      confusion matrix. + test on a synthetic dataset.
+
+## Milestone 10 — Phase 2 recording & live (Needs Nico to run; logic tested with fakes)
+- [ ] `lips/record.py` — utterance capture on the Phase 1 pipeline (start/stop,
+      collect per-frame lip landmarks, store labeled). Logic tested with injected frames.
+- [ ] `lips run` — live prediction overlay (rolling buffer → normalize+resample →
+      classify). Manual verify (**Needs Nico**: webcam).
 
 ## Verification
 - [x] `uv run pytest` green (24 tests, the whole pure core).

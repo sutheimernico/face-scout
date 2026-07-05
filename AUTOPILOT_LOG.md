@@ -8,3 +8,4 @@ One line per iteration: date · task · result.
 - 2026-07-05 · VideoFileSource + `run --video PATH` for camera-free runs, clip round-trip test · done (30 tests green)
 - 2026-07-05 · config + types smoke tests (defaults, frozen contract, Track mutability) · done (37 tests green) — Milestone 6 complete
 - 2026-07-05 · Phase 2 SOTA scan + ADR 0001 (landmark-based closed-vocab lip reading; sklearn v1, torch upgrade deferred) · done
+- 2026-07-05 · Phase 2 design spec + PLAN Milestones 8-10 (data/features → model → record/live) · done — Milestone 7 complete
