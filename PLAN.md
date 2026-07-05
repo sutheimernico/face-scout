@@ -63,7 +63,7 @@ Spec: `docs/superpowers/specs/2026-07-05-lip-reading-phase2-design.md`
 ## Milestone 9 — Phase 2 model (adds scikit-learn)
 - [x] `lips/model.py` — sklearn classifier wrapper (fit/predict/predict_proba,
       save/load); pin scikit-learn with justification. + tests on synthetic data.
-- [ ] `lips train` / `lips eval` CLI — train from a dataset dir, report accuracy +
+- [x] `lips train` / `lips eval` CLI — train from a dataset dir, report accuracy +
       confusion matrix. + test on a synthetic dataset.
 
 ## Milestone 10 — Phase 2 recording & live (Needs Nico to run; logic tested with fakes)
