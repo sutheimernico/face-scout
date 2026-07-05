@@ -11,8 +11,9 @@ models/
 *.task
 *.onnx
 
-# Biometric data — NEVER commit face embeddings or captured frames
+# Biometric data — NEVER commit face embeddings, lip data, or captured frames
 gallery/
+lips_data/
 *.npz
 assets/captures/
 

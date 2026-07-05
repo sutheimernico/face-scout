@@ -67,8 +67,9 @@ Spec: `docs/superpowers/specs/2026-07-05-lip-reading-phase2-design.md`
       confusion matrix. + test on a synthetic dataset.
 
 ## Milestone 10 — Phase 2 recording & live (Needs Nico to run; logic tested with fakes)
-- [ ] `lips/record.py` — utterance capture on the Phase 1 pipeline (start/stop,
-      collect per-frame lip landmarks, store labeled). Logic tested with injected frames.
+- [x] `lips/record.py` — utterance capture from a finite source + `lips record --video`
+      (collect per-frame lip landmarks, store labeled). Logic tested with injected frames.
+- [ ] Live interactive recorder (webcam start/stop overlay) — **Needs Nico** (camera + display).
 - [ ] `lips run` — live prediction overlay (rolling buffer → normalize+resample →
       classify). Manual verify (**Needs Nico**: webcam).
 

@@ -63,5 +63,31 @@ def lips_eval(
     typer.echo(str(report.confusion))
 
 
+@lips_app.command("record")
+def lips_record(
+    label: str = typer.Option(..., help="utterance label"),
+    session: str = typer.Option(..., help="session id (use a fresh one per recording day)"),
+    video: str = typer.Option(..., help="video clip of the single utterance to record"),
+    data: str = typer.Option("lips_data", help="dataset directory"),
+    index: int = typer.Option(0, help="sample index within (label, session)"),
+) -> None:
+    """Record one labeled utterance from a video clip into the dataset."""
+    from .capture import VideoFileSource
+    from .config import Config
+    from .landmarker import MediaPipeLandmarker
+    from .lips.record import record_utterance, save_utterance
+
+    cfg = Config()
+    source = VideoFileSource(video)
+    landmarker = MediaPipeLandmarker(cfg.landmarker_model, num_faces=1)
+    try:
+        sequence = record_utterance(source, landmarker)
+    finally:
+        source.release()
+        landmarker.close()
+    path = save_utterance(data, label, session, sequence, index)
+    typer.echo(f"saved '{label}' ({sequence.shape[0]} frames) -> {path}")
+
+
 if __name__ == "__main__":
     app()
