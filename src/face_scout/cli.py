@@ -89,5 +89,18 @@ def lips_record(
     typer.echo(f"saved '{label}' ({sequence.shape[0]} frames) -> {path}")
 
 
+@lips_app.command("run")
+def lips_run(
+    model: str = typer.Option("models/lips.joblib", help="trained lip model path"),
+    camera: int = 0,
+    min_confidence: float = typer.Option(0.5, help="below this, show '?'"),
+) -> None:
+    """Live push-to-talk lip reading: hold SPACE while speaking, release to predict."""
+    from .config import Config
+    from .lips.live import run_live
+
+    run_live(model, Config(camera_index=camera), min_confidence)
+
+
 if __name__ == "__main__":
     app()

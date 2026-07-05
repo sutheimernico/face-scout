@@ -70,8 +70,8 @@ Spec: `docs/superpowers/specs/2026-07-05-lip-reading-phase2-design.md`
 - [x] `lips/record.py` — utterance capture from a finite source + `lips record --video`
       (collect per-frame lip landmarks, store labeled). Logic tested with injected frames.
 - [ ] Live interactive recorder (webcam start/stop overlay) — **Needs Nico** (camera + display).
-- [ ] `lips run` — live prediction overlay (rolling buffer → normalize+resample →
-      classify). Manual verify (**Needs Nico**: webcam).
+- [x] `lips run` — predict core (`predict_meshes`) tested; push-to-talk webcam loop
+      (`run_live`) implemented. Live manual verify remains **Needs Nico** (webcam).
 
 ## Verification
 - [x] `uv run pytest` green (24 tests, the whole pure core).

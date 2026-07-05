@@ -15,3 +15,4 @@ One line per iteration: date · task · result.
 - 2026-07-05 · lips/model.py (RandomForest wrapper: fit/predict/proba/save/load) + synthetic tests, pin scikit-learn · done (60 tests green)
 - 2026-07-05 · lips train/eval CLI + lips/train.py (session-split eval, confusion matrix) + tests; ruff bugbear config for typer · done (64 tests green) — Milestone 9 complete
 - 2026-07-05 · lips/record.py (finite-source utterance capture) + `lips record --video` + tests; lips_data/ gitignored · done (70 tests green)
+- 2026-07-05 · lips/live.py (predict_meshes core + push-to-talk run_live) + `lips run` + tests · done (74 tests green) — Milestone 10 code done; live verify Needs Nico
