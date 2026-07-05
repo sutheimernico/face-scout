@@ -10,14 +10,15 @@ from . import renderer
 from .capture import WebcamCapture
 from .config import Config
 from .pipeline import build_pipeline
+from .types import FrameSource
 
 _WINDOW = "face-scout"
 
 
-def run(config: Config | None = None) -> None:
+def run(config: Config | None = None, source: FrameSource | None = None) -> None:
     config = config or Config()
 
-    source = WebcamCapture(config.camera_index)
+    source = source or WebcamCapture(config.camera_index)
     pipeline = build_pipeline(config)
     if not pipeline.has_recognition:
         print("Gallery is empty — running tracking only. Enroll a face to get identity.")

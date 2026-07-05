@@ -8,12 +8,17 @@ app = typer.Typer(help="face-scout — live webcam face tracking + identity", no
 
 
 @app.command()
-def run(camera: int = 0) -> None:
+def run(
+    camera: int = 0,
+    video: str = typer.Option(None, help="process a video file instead of the webcam"),
+) -> None:
     """Run live face tracking + identity recognition."""
     from .app import run as _run
+    from .capture import VideoFileSource
     from .config import Config
 
-    _run(Config(camera_index=camera))
+    source = VideoFileSource(video) if video else None
+    _run(Config(camera_index=camera), source=source)
 
 
 @app.command()

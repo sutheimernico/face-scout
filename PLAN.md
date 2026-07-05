@@ -41,7 +41,7 @@ hardware adapters (which cannot be tested without a camera) are wired in.
       per-frame wiring; make `app.run` thin I/O around it.
 - [x] End-to-end pipeline test with fake landmarker + embedder: identity flows to
       the correct track across frames, throttle + stickiness honored.
-- [ ] `VideoFileSource` (`FrameSource` over a video file) + `run --video PATH` for
+- [x] `VideoFileSource` (`FrameSource` over a video file) + `run --video PATH` for
       camera-free runs; unit test on a generated clip.
 - [ ] Smoke tests for `types` and `config` defaults.
 
