@@ -36,6 +36,21 @@ hardware adapters (which cannot be tested without a camera) are wired in.
 - [ ] Manual verification on a machine with a webcam; record demo GIF/video
       into `assets/` and embed in README. **(Nico — needs a camera + display.)**
 
+## Milestone 6 — Testability & camera-free verification (Phase 1 hardening)
+- [ ] Extract a headless `Pipeline` (inject `Landmarker`/`Embedder`) that owns the
+      per-frame wiring; make `app.run` thin I/O around it.
+- [ ] End-to-end pipeline test with fake landmarker + embedder: identity flows to
+      the correct track across frames, throttle + stickiness honored.
+- [ ] `VideoFileSource` (`FrameSource` over a video file) + `run --video PATH` for
+      camera-free runs; unit test on a generated clip.
+- [ ] Smoke tests for `types` and `config` defaults.
+
+## Milestone 7 — Phase 2 kickoff: lip reading (DESIGN)
+- [ ] Phase-boundary self-challenge: SOTA scan of lip-reading approaches; write
+      `docs/adr/0001-lip-reading-approach.md`.
+- [ ] Phase 2 design spec in `docs/superpowers/specs/`.
+- [ ] Expand this plan with Phase 2 build tasks (data → features → model → eval).
+
 ## Verification
 - [x] `uv run pytest` green (24 tests, the whole pure core).
 - [x] `uv run ruff check` clean.
