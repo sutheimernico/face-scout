@@ -11,3 +11,4 @@ One line per iteration: date · task · result.
 - 2026-07-05 · Phase 2 design spec + PLAN Milestones 8-10 (data/features → model → record/live) · done — Milestone 7 complete
 - 2026-07-05 · lips/normalize.py (nose-tip translation + inter-ocular scale) + invariance tests · done (41 tests green)
 - 2026-07-05 · lips/sequence.py (velocity trim, linear resample, feature vector) + tests · done (51 tests green)
+- 2026-07-05 · lips/dataset.py (labeled .npz store + session-aware split) + tests · done (55 tests green) — Milestone 8 complete

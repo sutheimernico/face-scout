@@ -57,7 +57,7 @@ Spec: `docs/superpowers/specs/2026-07-05-lip-reading-phase2-design.md`
       scale, nose-tip translation); return normalized lip subset. + tests.
 - [x] `lips/sequence.py` — velocity-based silence trim, fixed-length resample,
       flatten to a feature vector. + tests.
-- [ ] `lips/dataset.py` — labeled sample store (save/load `.npz`, label + session_id)
+- [x] `lips/dataset.py` — labeled sample store (save/load `.npz`, label + session_id)
       and session-aware train/val split (no frame leakage). + tests.
 
 ## Milestone 9 — Phase 2 model (adds scikit-learn)
