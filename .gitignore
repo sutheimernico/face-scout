@@ -19,3 +19,11 @@ assets/captures/
 
 # OS
 .DS_Store
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+# Claude Code local settings
+.claude/
